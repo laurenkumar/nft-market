@@ -1,4 +1,5 @@
 import { InjectedConnector } from '@web3-react/injected-connector'
+import {UAuthConnector} from '@uauth/web3-react'
 // import { NetworkConnector } from '@web3-react/network-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 // import { WalletLinkConnector } from '@web3-react/walletlink-connector'
@@ -14,6 +15,7 @@ import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 
 export enum ConnectorNames {
   Metamask = 'Metamask',
+  Unstoppable = 'Unstoppable',
   WalletConnect = 'WalletConnect',
 }
 
@@ -24,6 +26,19 @@ const RPC_URLS: { [chainId: number]: string } = {
 }
 
 export const injected = new InjectedConnector({ supportedChainIds: [5777, 1337, 4] })
+
+export const uauth = new UAuthConnector({
+    clientID: '1qyHcme87hjRz8XDZXjmU8MDsXrEnADy7OcLqzBz0oo=',
+    clientSecret: 'qfddsE1aV2AJUQyhNCv+rt8F1nB6m+7TrlL8qZbfX0o=',
+    redirectUri: 'localhost:3000/callback',
+    // postLogoutRedirectUri: process.env.REACT_APP_POST_LOGOUT_REDIRECT_URI!,
+    // fallbackIssuer: process.env.REACT_APP_FALLBACK_ISSUER!,
+
+    // Scope must include openid and wallet
+    scope: 'openid wallet',
+  // Injected and walletconnect connectors are required
+  connectors: {injected, walletconnect},
+})
 
 // export const network = new NetworkConnector({
 //   urls: {
@@ -91,6 +106,7 @@ export const walletconnect = new WalletConnectConnector({
 
 export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.Metamask]: injected,
+  [ConnectorNames.Unstoppable]: uauth,
   // [ConnectorNames.Network]: network,
   [ConnectorNames.WalletConnect]: walletconnect,
   // [ConnectorNames.WalletLink]: walletlink,
