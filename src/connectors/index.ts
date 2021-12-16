@@ -27,19 +27,6 @@ const RPC_URLS: { [chainId: number]: string } = {
 
 export const injected = new InjectedConnector({ supportedChainIds: [5777, 1337, 4] })
 
-export const uauth = new UAuthConnector({
-    clientID: '1qyHcme87hjRz8XDZXjmU8MDsXrEnADy7OcLqzBz0oo=',
-    clientSecret: 'qfddsE1aV2AJUQyhNCv+rt8F1nB6m+7TrlL8qZbfX0o=',
-    redirectUri: 'localhost:3000/callback',
-    // postLogoutRedirectUri: process.env.REACT_APP_POST_LOGOUT_REDIRECT_URI!,
-    // fallbackIssuer: process.env.REACT_APP_FALLBACK_ISSUER!,
-
-    // Scope must include openid and wallet
-    scope: 'openid wallet',
-  // Injected and walletconnect connectors are required
-  connectors: {injected, walletconnect},
-})
-
 // export const network = new NetworkConnector({
 //   urls: {
 //     1337: RPC_URLS[1],
@@ -55,6 +42,19 @@ export const walletconnect = new WalletConnectConnector({
   rpc: { 4: RPC_URLS[4] },
   chainId: 4,
   supportedChainIds: [4],
+})
+
+export const uauth = new UAuthConnector({
+    clientID: '1qyHcme87hjRz8XDZXjmU8MDsXrEnADy7OcLqzBz0oo=',
+    clientSecret: 'qfddsE1aV2AJUQyhNCv+rt8F1nB6m+7TrlL8qZbfX0o=',
+    redirectUri: 'localhost:3000/callback',
+    // postLogoutRedirectUri: process.env.REACT_APP_POST_LOGOUT_REDIRECT_URI!,
+    // fallbackIssuer: process.env.REACT_APP_FALLBACK_ISSUER!,
+
+    // Scope must include openid and wallet
+    scope: 'openid wallet',
+  // Injected and walletconnect connectors are required
+  connectors: {injected, walletconnect},
 })
 
 // export const walletlink = new WalletLinkConnector({
