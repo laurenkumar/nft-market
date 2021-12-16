@@ -12,7 +12,7 @@
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.1.9",
     "@types/jest": "^26.0.23",
-    "@types/node": "^16.3.0",
+    "@types/node": "^12.0.0",
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.8",
     "@uauth/web3-react": "^0.7.5",
