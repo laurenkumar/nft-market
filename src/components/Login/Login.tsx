@@ -18,7 +18,6 @@ const Login = () => {
     uauth
       .loginWithPopup()
       .catch()
-      .finally(console.log("connected")))
   }
   
   return (
