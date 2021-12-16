@@ -1,4 +1,5 @@
 import { AbstractConnector } from '@web3-react/abstract-connector'
+import UAuth from '@uauth/js'
 import { Flex, Button, Spinner, Image } from 'theme-ui'
 import { useWeb3React } from '@web3-react/core'
 import { ConnectorNames, connectorsByName } from '../../connectors'
@@ -12,6 +13,15 @@ const iconsMap = {
 const Login = () => {
   const { activatingConnector, setActivatingConnector } = useAppState()
   const { connector, activate } = useWeb3React()
+  
+  const handleLogin = () => {
+    uauth
+      .loginWithPopup()
+      .then(() => uauth.user().then(console.log("user))
+      .catch()
+      .finally(console.log("connected"))
+  }
+  
   return (
     <Flex sx={{ justifyContent: 'center' }}>
       {Object.keys(connectorsByName).map((name: string) => {
@@ -48,6 +58,22 @@ const Login = () => {
           </Button>
         )
       })}
+      <Button
+            mt={2}
+            mr={2}
+            variant="connect"
+            sx={{
+              borderColor: activating ? 'orange' : connected ? 'green' : 'unset',
+              position: 'relative',
+              maxWidth: 250,
+            }}
+            key={name}
+            onClick={() => {
+              handleLogin()
+            }}
+          >
+            Login With Unstoppable
+       </Button>
     </Flex>
   )
 }
